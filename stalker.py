@@ -168,8 +168,7 @@ def create_table_message( r, user , num_comments , ignored ):
     
     
     footer = "\nI am still underdevelopment. I am written in python using the PRAW Reddit API wrapper.\n"
-    footer += "\nIf you are seeing this, then chances are I will be hanging around this subreddit"
-    footer+= "\n on and off for a couple of days.\n"
+    footer += "\nYou can find my source code [here](https://github.com/ligerzer0/Wordbot)\n"
     footer += "\nTo use me, simply enter the following command:\n"
     footer += "\n    wordbot analyze [enter username here]\n"
     footer += "\nYou may pass 'me' as the username if you wish to see stats about your own word usage.\n"
