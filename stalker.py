@@ -68,7 +68,6 @@ def get_users_comments(r,user,number):
 
     while True:
         len_A = len(users_comments)
-        print "trying to get", number,"comments by user", user
         comments = r.get_redditor(user).get_comments(limit=number)
         print "length now is", str(len(comments))
        
