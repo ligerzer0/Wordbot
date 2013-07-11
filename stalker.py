@@ -176,7 +176,7 @@ def create_table_message( r, user , num_comments , ignored ):
     footer += "\nYou may pass 'me' as the username if you wish to see stats about your own word usage.\n"
     footer += "\n **Note: the square brackets are necessary.**\n"
     footer += "\nAs an example, let's say one were to request stats on a user 'Bob'\n"
-    footer+=  "\nThen the command would be as follow:\n"
+    footer+=  "\nThen the command would be as follows:\n"
     footer += "    wordbot analyze [Bob]\n"
     footer += "\nSoon, I shall be equipped with snynonyms ... *Soon*\n."
     footer += "\nFeel feel to make suggestions/compaints to my human, /u/" + CREATOR + "\n"    
