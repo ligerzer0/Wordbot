@@ -65,14 +65,14 @@ def get_users_comments(r,user,number):
         return None
     
     users_comments = []
+
     while True:
         len_A = len(users_comments)
         print "trying to get", number,"comments by user", user
-        try:
-            comments = r.get_redditor(user).get_comments(limit=number)
-        except:
-            print "Error: Username", user, "likely doesn't exist. Returning None"
-            return None        
+        comments = r.get_redditor(user).get_comments(limit=number)
+        print "length now is", str(len(comments))
+       
+ 
         users_comments.extend(comments)
         len_B = len(users_comments)
         print("fetched comments: " + str(len_B))
@@ -80,15 +80,18 @@ def get_users_comments(r,user,number):
         if not (len_B > len_A)  or len(users_comments) >= number:
             print "DONE fetching comments"
             break
-        print("Total number of users comments fetched: " + str(len(users_comments)) );
-        full_comments =  []
-        for comment in users_comments:
-            full_comments.append(convert(comment.body.lower()))    
-        print len(full_comments)
-        li = []
-        for x in full_comments:
-            li.append(x.split())
-        return li
+	print "still looping..."
+    
+    print("Total number of users comments fetched: " + str(len(users_comments)) );
+    full_comments =  []
+    for comment in users_comments:
+        full_comments.append(convert(comment.body.lower()))    
+    print len(full_comments)
+    li = []
+    for x in full_comments:
+        li.append(x.split())
+    print("returing li which has " + str(len(li)) + " comments")
+    return li
 
 
 def build_table(wSet , wList , to_ignore,  cutoff):
@@ -123,7 +126,7 @@ def build_table(wSet , wList , to_ignore,  cutoff):
         if count > cutoff and word not in to_ignore and len(word) is not 2 and not word == "**":
             row = ("|\t   *{0}*    \t\t|\t{1}\t\t|\t\t{2}%    \t|".format(word, str(count), str(pct) , str(unique_words), str(total_words) ) )
             table += "\n" + row
-            return table
+    return table
 
 def create_table_message( r, user , num_comments , ignored ):
     """Uses build_table function to create a message complete with analysis and some other rambling
