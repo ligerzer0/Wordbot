@@ -125,8 +125,8 @@ def build_table(wSet , wList , to_ignore,  cutoff):
         word = item[0]
         count = item[1]
         pct = round(float(count) / float(unique_words) * 100 , 2)
-        if count > cutoff and word not in to_ignore and 
-                          len(word) is not 2 and not word == "**":
+        if (count > cutoff and word not in to_ignore and 
+            len(word) is not 2 and not word == "**"):
             row = ("|\t   *{0}*    \t\t|\t{1}\t\t|\t\t{2}%    \t|".
                    format(word, str(count), str(pct), str(unique_words),
                     str(total_words) ) )
@@ -219,8 +219,8 @@ def add_user_to_done(user, self_check, total, unique):
     """
     self_ch = True if (self_check == 1) else False 
     try:    
-        cur.execute("INSERT into Done_Users(user_name, self_check,"
-                    "total_words, unique_words) VALUES(? , ?, ?, ?)", 
+        cur.execute("""INSERT into Done_Users(user_name, self_check,
+                    total_words, unique_words) VALUES(? , ?, ?, ?)""", 
                      [user,	self_ch, total, unique])
         db.commit()
         return True
@@ -250,8 +250,8 @@ def user_not_done(user, limit):
     :returns: True if user has been analyzed recently; False if not
               recently; String "ever" if never analyzed
     """
-    cur.execute("SELECT date as DATETIME from Done_Users where"
-                "user_name = ?", [user])
+    cur.execute("""SELECT date as DATETIME from Done_Users where
+                user_name = ?""", [user])
     row = cur.fetchone()
     if row:
         now = datetime.now()
@@ -270,8 +270,8 @@ def add_submission_to_done(the_id, subreddit):
     :returns: True if successfully added to database; False otherwise
     """
     try:    
-        cur.execute("INSERT into Submission(submission_id, subreddit)"
-                    "VALUES(? , ?)", [the_id , subreddit])
+        cur.execute("""INSERT into Submission(submission_id, subreddit)
+                    VALUES(? , ?)""", [the_id , subreddit])
         db.commit()
         return True
     except: 
@@ -289,8 +289,8 @@ def submission_not_done_recently(the_id , limit):
               not recently; String "ever" if never analyzed
     """    
     
-    cur.execute("SELECT date as DATETIME FROM Submission WHERE"
-                "submission_id= ?", [the_id]) 
+    cur.execute("""SELECT date as DATETIME FROM Submission WHERE
+                submission_id= ?""", [the_id]) 
     row = cur.fetchone()
     if row:
         now = datetime.now()
@@ -307,8 +307,8 @@ def update_submission(the_id):
     :returns: True if update successful; False otherwise
     """    
     try:
-        cur.execute("UPDATE Submission SET date=CURRENT_TIMESTAMP WHERE" 
-                    "submission_id=?", [the_id])
+        cur.execute("""UPDATE Submission SET date=CURRENT_TIMESTAMP WHERE 
+                    submission_id=?""", [the_id])
         db.commit() 
         return True
     except:
@@ -321,8 +321,8 @@ def update_user(user):
     :returns: True if update successful; False otherwise
     """    
     try:
-        cur.execute("UPDATE Done_Users SET date=CURRENT_TIMESTAMP WHERE" 
-                    "user_name=?", [user]) 
+        cur.execute("""UPDATE Done_Users SET date=CURRENT_TIMESTAMP WHERE
+                    user_name=?""", [user]) 
         db.commit()
         return True
     except:
