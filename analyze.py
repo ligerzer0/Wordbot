@@ -9,6 +9,11 @@ import urllib2
 import sqlite3
 from datetime import datetime
 from setup import *
+import logging
+
+
+
+logging.basicConfig(filename='bot.log', filemode='w', level=logging.DEBUG)
 
 #How long the thread should sleep. 
 SLEEP_TIME = 7*60
@@ -104,7 +109,8 @@ while True:
                                 break   
 
     #Thread sleeps for time specified, make changes for this in setup.py
-    print "Going to sleep now for" , str(SLEEP_TIME / 60), "minutes"
+    logging.info("Going to sleep now for %s minutes",
+                     str(SLEEP_TIME / 60) )
     
     count = 0   
      
@@ -112,9 +118,9 @@ while True:
 		
         time.sleep(SLEEP_INTERVAL)
         
-        print "Still asleep for another: ", 
-            str(SLEEP_TIME - count), "seconds. Or ",
-            str((SLEEP_TIME - count)/ 60), "minutes."
+        logging.info("Asleep for another: %s seconds. OR  %s mins", 
+            str(SLEEP_TIME - count),
+            str((SLEEP_TIME - count)/60)    )
             
         count += SLEEP_INTERVAL
 
