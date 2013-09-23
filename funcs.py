@@ -8,7 +8,7 @@ import logging
 
 #converts json to normal text
 def convert(input):
-    """Converts Json to regular text
+    """Converts Json reddit comment object into a String 
 
     :param input: Json to be converted to regular text
     :returns: A string
