@@ -1,5 +1,5 @@
 # Wordbot
-## A highly customizable reddit crawler for analyzing data on reddit
+### A customizable Reddit crawler for analyzing data on reddit
 
 To run, first edit `setup.py`.    
 Provide the required settings--the bot needs a reddit account to run.
