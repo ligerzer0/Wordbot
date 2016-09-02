@@ -1,4 +1,4 @@
-import praw 
+import praw
 from setup import *
 
 
@@ -8,16 +8,12 @@ def login(r):
 
     :param r: A Reddit Object (Praw)
     :returns: True if login successful; False otherwise
-    """    
+    """
     print "logging in...."
-    try: 
+    try:
         r.login(BOT_USERNAME,BOT_PASSWORD)
         print "logged in as" , BOT_USERNAME
         return True
     except:
-        print "Unabe to log in as", BOT_USER
+        print "Unabe to log in as", BOT_USERNAME
         return None
-        
-
-
-
